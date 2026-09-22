@@ -22,12 +22,21 @@
             <span>Entrar</span>
           </button>
           <div id="user-info" class="hidden">
+            <button id="manage-announcements-button" class="header-action-button" title="Gerenciar anúncios">
+              <span aria-hidden="true">&#128226;</span>
+              <span>Anúncios</span>
+            </button>
             <span id="display-name"></span>
             <button id="logout-button">Sair</button>
           </div>
         </div>
       </div>
     </header>
+
+    <section id="announcement-banner" class="announcement-banner hidden" aria-live="polite">
+      <span class="announcement-banner-icon" aria-hidden="true">&#128226;</span>
+      <div id="active-announcements" class="active-announcements"></div>
+    </section>
 
     <main>
       <section id="activities-container">
@@ -131,6 +140,58 @@
           <button type="submit">Entrar</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Announcement Management Modal -->
+    <div id="announcements-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="announcements-title">
+      <div class="modal-content announcements-modal-content">
+        <button id="close-announcements-modal" class="modal-close-button" type="button" aria-label="Fechar">&times;</button>
+        <div class="announcements-modal-header">
+          <div>
+            <h3 id="announcements-title">Gerenciar anúncios</h3>
+            <p>Publique avisos para estudantes e responsáveis.</p>
+          </div>
+          <button id="new-announcement-button" type="button">+ Novo anúncio</button>
+        </div>
+
+        <div id="announcement-manager-message" class="hidden message" role="status"></div>
+
+        <div class="announcement-manager-layout">
+          <div class="announcement-list-panel">
+            <div class="panel-heading">
+              <h4>Anúncios cadastrados</h4>
+              <span id="announcement-count" class="count-badge">0</span>
+            </div>
+            <div id="announcement-manager-list" class="announcement-manager-list">
+              <p class="manager-empty-state">Carregando anúncios...</p>
+            </div>
+          </div>
+
+          <form id="announcement-form" class="announcement-form hidden">
+            <div class="form-heading">
+              <h4 id="announcement-form-title">Novo anúncio</h4>
+              <button id="cancel-announcement-form" type="button" class="text-button">Cancelar</button>
+            </div>
+            <input id="announcement-id" type="hidden" />
+            <div class="form-group">
+              <label for="announcement-message">Mensagem</label>
+              <textarea id="announcement-message" maxlength="500" rows="5" required placeholder="Escreva um aviso claro e direto..."></textarea>
+              <span class="field-hint"><span id="announcement-character-count">0</span>/500</span>
+            </div>
+            <div class="announcement-date-fields">
+              <div class="form-group">
+                <label for="announcement-start-date">Data de início <span>(opcional)</span></label>
+                <input id="announcement-start-date" type="date" />
+              </div>
+              <div class="form-group">
+                <label for="announcement-expiration-date">Data de expiração</label>
+                <input id="announcement-expiration-date" type="date" required />
+              </div>
+            </div>
+            <button id="save-announcement-button" type="submit">Publicar anúncio</button>
+          </form>
+        </div>
       </div>
     </div>
 
